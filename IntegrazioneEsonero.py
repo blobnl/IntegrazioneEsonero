@@ -10,14 +10,11 @@ def convert_to_float(value):
         if isinstance(value, str):
             value = value.strip().replace(',', '.')
         return float(value)
-    except (ValueError, AttributeError, TypeError):  # se non � un float, ritorna 0
+    except (ValueError, AttributeError, TypeError):  # se non è un float, ritorna 0
         return 0.0
 
 # Funzione per creare il dizionario dei risultati esonero
 def dati_esonero(filename):
-    # nNOTA: Conversione dei numeri da formato italiano a float, per il formato di moodle...
-    def convert_to_float(value):
-        return float(value.replace(',', '.'))
     
     # Caricare i dati dal file Excel -> sheet esonero
     data = pd.ExcelFile(filename)
@@ -85,7 +82,7 @@ def dati_esame(file_risultati, file_risposte):
     for _, row in df_risposte.iterrows():
         username = row['Username']
         if username not in risultato:
-            print(f'Errore in file risposte: {username} non   presente nei risultati')
+            print(f'Errore in file risposte: {username} non presente nei risultati')
             continue
         
         risposta_data = str(row.get('Risposta data 1', '')).strip()
@@ -156,7 +153,7 @@ def crea_file_registrazione(filename, esonero, esame, data_esame):
 
 '''
 ISTRUZIONI:
-- salvare in un file xlsx i risultati della prova intermedia (il mio codice funziona con il formato basic di moodle...)
+- salvare in un file xlsx i risultati della prova intermedia (il mio file usa il formato xlsx dei risultati di moodle...)
 - correggere tutti i compiti, salvare i risultati in file xlsx
 MOODLE -> esame -> risultati -> impostare "valutazioni" nel primo box in alto, selezionare tutti gli studenti con checkbox in alto, scaricare come excel
 - esportare il file delle risposte date, sempre in xlsx
@@ -176,7 +173,6 @@ def main():
     # Creazione del dizionario per esonero
     file_esonero = os.path.join(DIR_ESONERO, 'esonero.xlsx')
     esonero = dati_esonero(file_esonero)
-    # Mostro i primi elementi del dizionario per verificarne il contenuto
     
     # Creazione del dizionario per esame
     file_esame_risultati = os.path.join(DIR_ESAME, 'risultati.xlsx')

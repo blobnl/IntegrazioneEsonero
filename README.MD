@@ -27,14 +27,14 @@ Per l'estrazione dei file da moodle:
 - risultati: MOODLE -> esame -> risultati -> impostare "valutazioni" nel primo box in alto, selezionare tutti gli studenti con checkbox in alto, scaricare come excel
 - risposte: MOODLE -> esame -> risultati -> impostare "risposte dettagliate" nel primo box in alto, selezionare tutti gli studenti con checkbox in alto, scaricare come excel
 
-
+```
     def main():
         # dir da cui recuperare i dati prova intermedia
         DIR_ESONERO = r'xx\Informatica\2024\Esami\Prova intermedia\risultati'
         # dir da cui recuperare i dati esame (e in cui salvare excel per registrazione)
         DIR_ESAME = r'xx\Informatica\2024\Esami\2024.12.19'
         DATA_ESAME = '19/12/2024' # data da stampare in excel registrazione esami
-
+    
         # Creazione del dizionario per esonero
         file_esonero = os.path.join(DIR_ESONERO, 'esonero.xlsx')
         esonero = dati_esonero(file_esonero)
@@ -47,4 +47,5 @@ Per l'estrazione dei file da moodle:
     
         # genera file registrazione
         file_registrazione = os.path.join(DIR_ESAME, 'registrazione_esame.xlsx')
-        crea_file_registrazione(file_registrazione, esonero, esame, DATA_ESAME)`
+        crea_file_registrazione(file_registrazione, esonero, esame, DATA_ESAME)
+```
