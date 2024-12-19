@@ -1,0 +1,23 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.34114.132
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{888888A0-9F3D-457C-B088-3A5042F75D52}") = "IntegrazioneEsonero", "IntegrazioneEsonero.pyproj", "{09580B50-C8EF-4D0B-9247-BC49310DEF97}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{09580B50-C8EF-4D0B-9247-BC49310DEF97}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{09580B50-C8EF-4D0B-9247-BC49310DEF97}.Release|Any CPU.ActiveCfg = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {99CC3A9C-995F-4ABB-8AD1-603A7F27B7B9}
+	EndGlobalSection
+EndGlobal
