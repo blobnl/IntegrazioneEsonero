@@ -4,25 +4,25 @@ import os
 import math
 
 
-# nNOTA: Conversione dei numeri da formato italiano a float, per il formato di moodle...
+# nNOTA: Conversione dei numeri da formato italiano a float, per il formato di moodle (che a volte è str a volte float)...
 def convert_to_float(value):
     try:
         if isinstance(value, str):
             value = value.strip().replace(',', '.')
         return float(value)
-    except (ValueError, AttributeError, TypeError):  # se non è un float, ritorna 0
+    except (ValueError, AttributeError, TypeError):  # se la stringa non è un float, ritorna 0
         return 0.0
 
-# Funzione per creare il dizionario dei risultati esonero
+# risultati esonero
 def dati_esonero(filename):
     
-    # Caricare i dati dal file Excel -> sheet esonero
+    # Carica i dati dal file Excel -> sheet esonero
     data = pd.ExcelFile(filename)
     # Prendo automaticamente il primo (e unico) foglio
     sheet_name = data.sheet_names[0]
     df = data.parse(sheet_name)
     
-    # Dizionario risultato
+    # Dizionario (matricola, dati)
     risultato = {}
     
     for _, row in df.iterrows():
@@ -46,7 +46,7 @@ def is_float(value):
     except ValueError:
         return False
 
-# Funzione per creare il dizionario dei risultati dell'esame
+# risultati dell'esame
 def dati_esame(file_risultati, file_risposte):
     
     # Caricare i risultati dal file Excel -> calcola voto teoria e voto programmazione
@@ -55,7 +55,7 @@ def dati_esame(file_risultati, file_risposte):
     sheet_name = data.sheet_names[0]
     df_risultati = data.parse(sheet_name)
     
-    # Dizionario risultato -> per ogni username, voto teoria, voto programmazione,
+    # Dizionario risultato -> (username, (voto teoria, voto programmazione))
     risultato = {}
     for _, row in df_risultati.iterrows():
         username = row['Username']
