@@ -110,7 +110,7 @@ def crea_file_registrazione(filename, esonero, esame, data_esame):
     for username, dati in esame.items():
         # se username, usa VI, recuperalo da esonero, altrimenti usa quello dell'esame. Se ha voti esonero prog, sommali
         voto = dati['prog'] 
-        note = ''
+        note = f'Prog: {voto:.2f}. '
         if not dati['ritirato']:
             voto_teoria = dati['teoria'] 
             if dati['usa_vi']:
@@ -119,6 +119,8 @@ def crea_file_registrazione(filename, esonero, esame, data_esame):
                 else:
                     voto_teoria = esonero[username]['teoria']
                     note += f'teoria da prova intermedia ({voto_teoria}). '
+            else:
+                note += f'teoria da compito ({voto_teoria}). '
             voto += voto_teoria
             if username in esonero:
                 if esonero[username]['prog'] > 0:
@@ -126,6 +128,7 @@ def crea_file_registrazione(filename, esonero, esame, data_esame):
                     voto += esonero[username]['prog']
                     note += f'{esonero[username]["prog"]} punti extra prog.'
 
+        note = f'V= {voto:.2f}. ' + note
         if not dati['ritirato'] and round(voto) >= 18:
             voto = round(voto)
             if voto > 31:  # lode per voto > 31, se arrotonda a 31 ma minore è solo 30
@@ -136,7 +139,7 @@ def crea_file_registrazione(filename, esonero, esame, data_esame):
             voto = ''
                 
         righe.append({
-            'Matricola': username,
+            'Matricola': username[1:], # to remove the s
             'Cognome': dati['cognome'],
             'Nome': dati['nome'],
             'Voto': voto,  
@@ -166,8 +169,8 @@ def main():
     # dir da cui recuperare i dati prova intermedia
     DIR_ESONERO = r'G:\Didattica\Informatica\Slides 2024\Esami\Prova intermedia\risultati'
     # dir da cui recuperare i dati esame (e in cui salvare excel per registrazione)
-    DIR_ESAME = r'G:\Didattica\Informatica\Slides 2024\Esami\2024.12.19'
-    DATA_ESAME = '19/12/2024' # data da stampare in excel registrazione esami
+    DIR_ESAME = r'G:\Didattica\Informatica\Slides 2024\Esami\2025.01.28'
+    DATA_ESAME = '01/28/2025' # data da stampare in excel registrazione esami
 
 
     # Creazione del dizionario per esonero
@@ -175,7 +178,7 @@ def main():
     esonero = dati_esonero(file_esonero)
     
     # Creazione del dizionario per esame
-    file_esame_risultati = os.path.join(DIR_ESAME, 'risultati.xlsx')
+    file_esame_risultati = os.path.join(DIR_ESAME, 'valutazioni.xlsx')
     file_esame_risposte = os.path.join(DIR_ESAME, 'risposte.xlsx')
     esame = dati_esame(file_esame_risultati, file_esame_risposte)
     
